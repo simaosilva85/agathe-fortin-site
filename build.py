@@ -6,7 +6,7 @@ Aucune ligne décorative, aucun texte sur image, photos en format natif."""
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "27"
+V = "30"
 
 NAV = [
     ("index.html", "Accueil"),
@@ -580,10 +580,95 @@ CONTACT = page_head(
 </section>
 """
 
+
+# ------------------------------------------------------------------
+# ACCUEIL — VERSION 2 (« le showroom de nuit »)
+# ------------------------------------------------------------------
+def _section(src, start_marker):
+    a = src.index(start_marker)
+    b = src.index("</section>", a) + len("</section>")
+    return a, b
+
+RIBBON = ["salon", "rouge", "turquoise", "vert", "ocre", "bleu", "pistache", "corail"]
+
+def _ribbon_fig(i, n):
+    load = 'fetchpriority="high"' if i < 3 else 'loading="lazy"'
+    return f'      <figure><img src="assets/img/showroom/{n}.jpg" alt="Le showroom" {load}></figure>\n'
+HERO_V2 = """<section class="v2-hero">
+  <div class="container v2-hero-top">
+    <div class="v2-hero-title">
+      <span class="v2-status"><i></i>Showroom ouvert sur rendez-vous</span>
+      <h1>Céramiques, végétaux &amp; décors <span class="v2-gold">d'exception.</span></h1>
+    </div>
+    <div class="v2-hero-side">
+      <p>Depuis 2005, Agathe Fortin sélectionne pièces et végétaux chez les meilleurs producteurs. Une grande halle à Gamaches-en-Vexin, à 20 minutes du jardin de Monet.</p>
+      <div class="v2-ctas">
+        <a class="btn" href="boutique.html">Découvrir la boutique</a>
+        <a class="v2-btn-ghost" href="contact.html">Visite sur rendez-vous</a>
+      </div>
+    </div>
+  </div>
+  <div class="v2-ribbon" aria-label="Le showroom en images">
+    <div class="v2-ribbon-track">
+""" + "".join(_ribbon_fig(i, n) for i, n in enumerate(RIBBON)) + """    </div>
+  </div>
+</section>"""
+
+UNIVERS_V2 = """<section class="section v2-univers" id="univers">
+  <div class="container">
+    <div class="v2-head">
+      <h2>Trois façons de nous découvrir</h2>
+      <p>Une boutique de pièces choisies, un service de recherche de végétaux, et trente ans de jardins réalisés.</p>
+    </div>
+    <div class="v2-bento">
+      <a class="v2-tile v2-tile--big" href="boutique.html">
+        <img src="assets/img/showroom/rouge.jpg" alt="Céramiques de la boutique" loading="lazy">
+        <span class="v2-chip"><b>01</b><strong>La boutique</strong><em>Céramiques &amp; pièces choisies</em><i class="v2-go">&#8594;</i></span>
+      </a>
+      <a class="v2-tile" href="vegetal.html">
+        <img src="assets/img/slider2/agathe-fortin-paysages-28289.jpg" alt="Recherche de végétaux en pépinière" loading="lazy">
+        <span class="v2-chip"><b>02</b><strong>Le végétal</strong><em>Recherche &amp; courtage, gratuit</em><i class="v2-go">&#8594;</i></span>
+      </a>
+      <a class="v2-tile" href="projets.html">
+        <img src="assets/img/projets/agathe-fortin-paysages-83602.jpg" alt="Jardin réalisé à Marrakech" loading="lazy">
+        <span class="v2-chip"><b>03</b><strong>Les projets</strong><em>De l'Eure à Marrakech</em><i class="v2-go">&#8594;</i></span>
+      </a>
+    </div>
+  </div>
+</section>"""
+
+CTA_V2 = """<section class="v2-cta">
+  <div class="container v2-cta-grid">
+    <span class="v2-cta-img"><img src="assets/img/showroom/corail.jpg" alt="Hortensias séchés et céramiques du showroom" loading="lazy"></span>
+    <div>
+      <h2>Un jardin, une terrasse, un décor à imaginer&nbsp;?</h2>
+      <p>Un interlocuteur unique, de l'étude à la livraison. Racontez-nous votre projet — réponse sous 48&nbsp;h.</p>
+      <a class="btn btn--light" href="contact.html">Parlons de votre projet</a>
+    </div>
+  </div>
+</section>"""
+
+_v = INDEX
+a, b = _section(_v, '<section class="hero2">');                 _v = _v[:a] + HERO_V2 + _v[b:]
+a, b = _section(_v, '<section class="section section--white" id="univers">'); _v = _v[:a] + UNIVERS_V2 + _v[b:]
+a, b = _section(_v, '<section class="cta-split">');             _v = _v[:a] + CTA_V2 + _v[b:]
+INDEX_V2 = _v.replace('<section class="section" id="boutique-teaser">', '<section class="section v2-dark" id="boutique-teaser">')
+
+SWITCHER = """
+<nav class="ds-switch" aria-label="Changer de version du design">
+  <span>Design</span>
+  <a href="index.html" class="%s">V1</a>
+  <a href="index-v2.html" class="%s">V2</a>
+</nav>
+"""
+
 PAGES = {
     "index.html": ("Agathe Fortin Paysages — Céramiques & végétaux | Giverny, Vexin",
                    "Sélection et courtage de végétaux, céramiques et décors. Showroom à Gamaches-en-Vexin, à 20 minutes de Giverny.",
                    INDEX),
+    "index-v2.html": ("Agathe Fortin Paysages — Céramiques & végétaux | Giverny, Vexin",
+                   "Sélection et courtage de végétaux, céramiques et décors. Showroom à Gamaches-en-Vexin, à 20 minutes de Giverny.",
+                   INDEX_V2),
     "vegetal.html": ("Le Végétal — Agathe Fortin Paysages",
                      "Recherche de végétaux gratuite et personnalisée : arbres, fruitiers, rosiers, conifères, vivaces… Les meilleurs producteurs français et européens.",
                      VEGETAL),
@@ -605,7 +690,15 @@ PAGES = {
 }
 
 for fname, (title, desc, content) in PAGES.items():
-    html = head(title, desc) + '<body>\n' + header(fname) + '\n<main id="main">' + content + '</main>\n' + FOOTER
+    is_v2 = fname == "index-v2.html"
+    page_head_html = head(title, desc)
+    if is_v2:
+        page_head_html = page_head_html.replace("</head>", f'<link rel="stylesheet" href="assets/css/v2.css?v={V}">\n</head>')
+    body = '<body class="v2">\n' if is_v2 else '<body>\n'
+    switch = ""
+    if fname in ("index.html", "index-v2.html"):
+        switch = SWITCHER % (("" , "on") if is_v2 else ("on", ""))
+    html = page_head_html + body + header("index.html" if is_v2 else fname) + '\n<main id="main">' + content + '</main>\n' + switch + FOOTER
     with open(os.path.join(ROOT, fname), "w", encoding="utf-8") as f:
         f.write(html)
     print("écrit :", fname)
