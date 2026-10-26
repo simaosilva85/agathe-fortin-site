@@ -6,7 +6,7 @@ Aucune ligne décorative, aucun texte sur image, photos en format natif."""
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "30"
+V = "35"
 
 NAV = [
     ("index.html", "Accueil"),
@@ -281,7 +281,7 @@ INDEX = """
 
 <section class="section section--white" id="equipe">
   <div class="container founder-grid">
-    <span class="imgwrap founder-photo"><img src="assets/img/brand/agathe-portrait.jpg" alt="Agathe Fortin, fondatrice"></span>
+    <span class="imgwrap founder-photo"><img src="assets/img/brand/agathe-fondatrice.jpg" alt="Agathe Fortin, fondatrice"></span>
     <div class="founder-text">
       <blockquote>«&nbsp;Peu de pépinières me sont inconnues. Mon métier, c'est dénicher le végétal d'exception — la perle rare.&nbsp;»</blockquote>
       <p class="founder-sign"><strong>Agathe Fortin</strong> · Fondatrice &amp; paysagiste — trente ans de métier</p>
@@ -594,23 +594,29 @@ RIBBON = ["salon", "rouge", "turquoise", "vert", "ocre", "bleu", "pistache", "co
 def _ribbon_fig(i, n):
     load = 'fetchpriority="high"' if i < 3 else 'loading="lazy"'
     return f'      <figure><img src="assets/img/showroom/{n}.jpg" alt="Le showroom" {load}></figure>\n'
-HERO_V2 = """<section class="v2-hero">
-  <div class="container v2-hero-top">
-    <div class="v2-hero-title">
+HERO_V2 = """<section class="v2h">
+  <div class="container v2h-grid">
+    <div class="v2h-card">
       <span class="v2-status"><i></i>Showroom ouvert sur rendez-vous</span>
-      <h1>Céramiques, végétaux &amp; décors <span class="v2-gold">d'exception.</span></h1>
-    </div>
-    <div class="v2-hero-side">
-      <p>Depuis 2005, Agathe Fortin sélectionne pièces et végétaux chez les meilleurs producteurs. Une grande halle à Gamaches-en-Vexin, à 20 minutes du jardin de Monet.</p>
+      <h1>Céramiques, végétaux &amp; décors d'exception</h1>
+      <p>Depuis 2005, Agathe Fortin sélectionne pièces et végétaux chez les meilleurs producteurs français et européens — à Gamaches-en-Vexin, à 20 minutes du jardin de Monet.</p>
       <div class="v2-ctas">
         <a class="btn" href="boutique.html">Découvrir la boutique</a>
-        <a class="v2-btn-ghost" href="contact.html">Visite sur rendez-vous</a>
+        <a class="v2h-link" href="contact.html">Visite sur rendez-vous <span>&#8594;</span></a>
       </div>
     </div>
-  </div>
-  <div class="v2-ribbon" aria-label="Le showroom en images">
-    <div class="v2-ribbon-track">
-""" + "".join(_ribbon_fig(i, n) for i, n in enumerate(RIBBON)) + """    </div>
+    <a class="v2-tile v2h-a" href="contact.html">
+      <img src="assets/img/showroom/salon.jpg" alt="La halle du showroom" fetchpriority="high">
+      <span class="v2-chip"><b>01</b><strong>La halle</strong><em>Des centaines de pièces</em><i class="v2-go">&#8594;</i></span>
+    </a>
+    <a class="v2-tile v2h-b" href="boutique.html">
+      <img src="assets/img/showroom/turquoise.jpg" alt="Le coin turquoise du showroom">
+      <span class="v2-chip v2-chip--sm"><strong>Pièces choisies</strong><i class="v2-go">&#8594;</i></span>
+    </a>
+    <a class="v2-tile v2h-c" href="projets.html">
+      <img src="assets/img/showroom/pistache.jpg" alt="Les verts tendres du showroom">
+      <span class="v2-chip v2-chip--sm"><strong>Projets sur-mesure</strong><i class="v2-go">&#8594;</i></span>
+    </a>
   </div>
 </section>"""
 
@@ -637,13 +643,16 @@ UNIVERS_V2 = """<section class="section v2-univers" id="univers">
   </div>
 </section>"""
 
-CTA_V2 = """<section class="v2-cta">
-  <div class="container v2-cta-grid">
-    <span class="v2-cta-img"><img src="assets/img/showroom/corail.jpg" alt="Hortensias séchés et céramiques du showroom" loading="lazy"></span>
-    <div>
-      <h2>Un jardin, une terrasse, un décor à imaginer&nbsp;?</h2>
-      <p>Un interlocuteur unique, de l'étude à la livraison. Racontez-nous votre projet — réponse sous 48&nbsp;h.</p>
-      <a class="btn btn--light" href="contact.html">Parlons de votre projet</a>
+CTA_V2 = """<section class="section section--white v2-cta2">
+  <div class="container">
+    <div class="v2-cta2-card">
+      <span class="v2-cta2-img"><img src="assets/img/showroom/corail.jpg" alt="Hortensias séchés et céramiques du showroom" loading="lazy"></span>
+      <div class="v2-cta2-text">
+        <span class="v2-cta2-num">Votre projet</span>
+        <h2>Un jardin, une terrasse, un décor à imaginer&nbsp;?</h2>
+        <p>Un interlocuteur unique, de l'étude à la livraison. Racontez-nous votre envie — réponse sous 48&nbsp;h.</p>
+        <a class="btn" href="contact.html">Parlons de votre projet</a>
+      </div>
     </div>
   </div>
 </section>"""
@@ -652,7 +661,11 @@ _v = INDEX
 a, b = _section(_v, '<section class="hero2">');                 _v = _v[:a] + HERO_V2 + _v[b:]
 a, b = _section(_v, '<section class="section section--white" id="univers">'); _v = _v[:a] + UNIVERS_V2 + _v[b:]
 a, b = _section(_v, '<section class="cta-split">');             _v = _v[:a] + CTA_V2 + _v[b:]
-INDEX_V2 = _v.replace('<section class="section" id="boutique-teaser">', '<section class="section v2-dark" id="boutique-teaser">')
+INDEX_V2 = _v
+
+# la mosaïque des univers (aimée en V2) remplace les 3 cartes simples dans la V1
+a, b = _section(INDEX, '<section class="section section--white" id="univers">')
+INDEX = INDEX[:a] + UNIVERS_V2.replace('class="section v2-univers"', 'class="section section--white v2-univers"') + INDEX[b:]
 
 SWITCHER = """
 <nav class="ds-switch" aria-label="Changer de version du design">

@@ -596,7 +596,7 @@ Envoyé depuis la boutique agathefortin.com`;
   imgTargets.forEach(el => imgIo.observe(el));
 
   /* titres h1/h2 : ligne masquée qui monte */
-  $$("main h2, .hb-text h1, .hero2-text h1, .v2-hero h1").forEach(h => {
+  $$("main h2, .hb-text h1, .hero2-text h1").forEach(h => {
     if (h.closest(".teaser-head")) { /* garde l'alignement base-ligne */ }
     const span = document.createElement("span");
     span.className = "tl";
@@ -611,7 +611,7 @@ Envoyé depuis la boutique agathefortin.com`;
     });
   }, { threshold: 0.4 });
   $$(".tl").forEach(el => tlIo.observe(el));
-  requestAnimationFrame(() => $$(".hb-text .tl, .hero2-text .tl, .v2-hero .tl").forEach(el => el.classList.add("tl-in")));
+  requestAnimationFrame(() => $$(".hb-text .tl, .hero2-text .tl").forEach(el => el.classList.add("tl-in")));
 
   /* parallaxe très douce dans les grandes images */
   const plx = $$(".hb-media img, .showroom-photos img, .hs-col");
@@ -729,23 +729,4 @@ Envoyé depuis la boutique agathefortin.com`;
   addEventListener("load", layout);
   if (document.fonts) document.fonts.ready.then(layout);
   if ("ResizeObserver" in window) new ResizeObserver(layout).observe(grid);
-})();
-
-/* ============================================================
-   Accueil V2 — le ruban de photos glisse avec le défilement
-   ============================================================ */
-(() => {
-  const track = document.querySelector(".v2-ribbon-track");
-  if (!track || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  let ticking = false;
-  const move = () => {
-    ticking = false;
-    if (innerWidth < 960) { track.style.transform = ""; return; }
-    const max = Math.max(0, track.scrollWidth - innerWidth + 40);
-    const x = Math.min(max, scrollY * 0.55);
-    track.style.transform = `translate3d(${-x}px, 0, 0)`;
-  };
-  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(move); } }, { passive: true });
-  addEventListener("resize", move);
-  move();
 })();

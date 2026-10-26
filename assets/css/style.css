@@ -913,3 +913,40 @@ body.menu-open #mobile-menu { opacity: 1; visibility: visible; }
 }
 .ds-switch a:hover { background: rgba(255,255,255,0.12); }
 .ds-switch a.on { background: var(--gold); color: #fff; }
+
+/* ============================================================
+   Mosaïque des univers (V1 et V2)
+   ============================================================ */
+/* ---------- univers en mosaïque ---------- */
+.v2-head { display: grid; gap: 10px 40px; align-items: end; margin-bottom: clamp(22px, 3vw, 36px); }
+@media (min-width: 900px) { .v2-head { grid-template-columns: 1fr 1fr; } }
+.v2-head h2 { margin-bottom: 0; font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.02em; }
+.v2-head p { color: var(--ink-3); max-width: 46ch; }
+.v2-bento { display: grid; gap: clamp(12px, 1.4vw, 18px); }
+@media (min-width: 900px) {
+  .v2-bento { grid-template-columns: 5fr 7fr; grid-template-rows: repeat(2, clamp(240px, 22vw, 320px)); }
+  .v2-tile--big { grid-row: span 2; }
+}
+.v2-tile { position: relative; display: block; overflow: hidden; border-radius: 10px; background: var(--border); min-height: 260px; }
+.v2-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.v2-tile:hover img { transform: scale(1.05); }
+@media (max-width: 899px) { .v2-tile--big { min-height: 420px; } }
+.v2-chip {
+  position: absolute; left: 14px; bottom: 14px; right: 14px; z-index: 2;
+  display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; column-gap: 12px; align-items: center;
+  background: rgba(255,255,255,0.95); border-radius: 8px; padding: 12px 14px;
+  box-shadow: 0 10px 26px -14px rgba(43,39,34,0.5);
+}
+@media (min-width: 900px) { .v2-chip { right: auto; min-width: 300px; } }
+.v2-chip b { grid-row: span 2; font-family: var(--sans); font-size: 13px; color: var(--gold); }
+.v2-chip strong { font-family: var(--sans); font-size: 16px; color: var(--ink); }
+.v2-chip em { font-style: normal; font-size: 13px; color: var(--ink-3); grid-column: 2; }
+.v2-go {
+  grid-column: 3; grid-row: 1 / span 2;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ink); color: #fff; font-style: normal; font-size: 15px;
+  transition: background 0.25s, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.v2-tile:hover .v2-go { background: var(--gold); transform: translateX(3px); }
+

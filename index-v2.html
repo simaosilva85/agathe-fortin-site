@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=30">
-<link rel="stylesheet" href="assets/css/v2.css?v=30">
+<link rel="stylesheet" href="assets/css/style.css?v=35">
+<link rel="stylesheet" href="assets/css/v2.css?v=35">
 </head>
 <body class="v2">
 
@@ -41,31 +41,29 @@
 </div>
 
 <main id="main">
-<section class="v2-hero">
-  <div class="container v2-hero-top">
-    <div class="v2-hero-title">
+<section class="v2h">
+  <div class="container v2h-grid">
+    <div class="v2h-card">
       <span class="v2-status"><i></i>Showroom ouvert sur rendez-vous</span>
-      <h1>Céramiques, végétaux &amp; décors <span class="v2-gold">d'exception.</span></h1>
-    </div>
-    <div class="v2-hero-side">
-      <p>Depuis 2005, Agathe Fortin sélectionne pièces et végétaux chez les meilleurs producteurs. Une grande halle à Gamaches-en-Vexin, à 20 minutes du jardin de Monet.</p>
+      <h1>Céramiques, végétaux &amp; décors d'exception</h1>
+      <p>Depuis 2005, Agathe Fortin sélectionne pièces et végétaux chez les meilleurs producteurs français et européens — à Gamaches-en-Vexin, à 20 minutes du jardin de Monet.</p>
       <div class="v2-ctas">
         <a class="btn" href="boutique.html">Découvrir la boutique</a>
-        <a class="v2-btn-ghost" href="contact.html">Visite sur rendez-vous</a>
+        <a class="v2h-link" href="contact.html">Visite sur rendez-vous <span>&#8594;</span></a>
       </div>
     </div>
-  </div>
-  <div class="v2-ribbon" aria-label="Le showroom en images">
-    <div class="v2-ribbon-track">
-      <figure><img src="assets/img/showroom/salon.jpg" alt="Le showroom" fetchpriority="high"></figure>
-      <figure><img src="assets/img/showroom/rouge.jpg" alt="Le showroom" fetchpriority="high"></figure>
-      <figure><img src="assets/img/showroom/turquoise.jpg" alt="Le showroom" fetchpriority="high"></figure>
-      <figure><img src="assets/img/showroom/vert.jpg" alt="Le showroom" loading="lazy"></figure>
-      <figure><img src="assets/img/showroom/ocre.jpg" alt="Le showroom" loading="lazy"></figure>
-      <figure><img src="assets/img/showroom/bleu.jpg" alt="Le showroom" loading="lazy"></figure>
-      <figure><img src="assets/img/showroom/pistache.jpg" alt="Le showroom" loading="lazy"></figure>
-      <figure><img src="assets/img/showroom/corail.jpg" alt="Le showroom" loading="lazy"></figure>
-    </div>
+    <a class="v2-tile v2h-a" href="contact.html">
+      <img src="assets/img/showroom/salon.jpg" alt="La halle du showroom" fetchpriority="high">
+      <span class="v2-chip"><b>01</b><strong>La halle</strong><em>Des centaines de pièces</em><i class="v2-go">&#8594;</i></span>
+    </a>
+    <a class="v2-tile v2h-b" href="boutique.html">
+      <img src="assets/img/showroom/turquoise.jpg" alt="Le coin turquoise du showroom">
+      <span class="v2-chip v2-chip--sm"><strong>Pièces choisies</strong><i class="v2-go">&#8594;</i></span>
+    </a>
+    <a class="v2-tile v2h-c" href="projets.html">
+      <img src="assets/img/showroom/pistache.jpg" alt="Les verts tendres du showroom">
+      <span class="v2-chip v2-chip--sm"><strong>Projets sur-mesure</strong><i class="v2-go">&#8594;</i></span>
+    </a>
   </div>
 </section>
 
@@ -92,20 +90,23 @@
   </div>
 </section>
 
-<section class="v2-cta">
-  <div class="container v2-cta-grid">
-    <span class="v2-cta-img"><img src="assets/img/showroom/corail.jpg" alt="Hortensias séchés et céramiques du showroom" loading="lazy"></span>
-    <div>
-      <h2>Un jardin, une terrasse, un décor à imaginer&nbsp;?</h2>
-      <p>Un interlocuteur unique, de l'étude à la livraison. Racontez-nous votre projet — réponse sous 48&nbsp;h.</p>
-      <a class="btn btn--light" href="contact.html">Parlons de votre projet</a>
+<section class="section section--white v2-cta2">
+  <div class="container">
+    <div class="v2-cta2-card">
+      <span class="v2-cta2-img"><img src="assets/img/showroom/corail.jpg" alt="Hortensias séchés et céramiques du showroom" loading="lazy"></span>
+      <div class="v2-cta2-text">
+        <span class="v2-cta2-num">Votre projet</span>
+        <h2>Un jardin, une terrasse, un décor à imaginer&nbsp;?</h2>
+        <p>Un interlocuteur unique, de l'étude à la livraison. Racontez-nous votre envie — réponse sous 48&nbsp;h.</p>
+        <a class="btn" href="contact.html">Parlons de votre projet</a>
+      </div>
     </div>
   </div>
 </section>
 
 
 
-<section class="section v2-dark" id="boutique-teaser">
+<section class="section" id="boutique-teaser">
   <div class="container">
     <div class="teaser-head">
       <h2>Pièces choisies</h2>
@@ -119,7 +120,7 @@
 
 <section class="section section--white" id="equipe">
   <div class="container founder-grid">
-    <span class="imgwrap founder-photo"><img src="assets/img/brand/agathe-portrait.jpg" alt="Agathe Fortin, fondatrice"></span>
+    <span class="imgwrap founder-photo"><img src="assets/img/brand/agathe-fondatrice.jpg" alt="Agathe Fortin, fondatrice"></span>
     <div class="founder-text">
       <blockquote>«&nbsp;Peu de pépinières me sont inconnues. Mon métier, c'est dénicher le végétal d'exception — la perle rare.&nbsp;»</blockquote>
       <p class="founder-sign"><strong>Agathe Fortin</strong> · Fondatrice &amp; paysagiste — trente ans de métier</p>
@@ -283,7 +284,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=30"></script>
-<script src="assets/js/main.js?v=30"></script>
+<script src="assets/data.js?v=35"></script>
+<script src="assets/js/main.js?v=35"></script>
 </body>
 </html>
